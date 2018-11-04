@@ -17,8 +17,8 @@ module.exports = {
         return noteDao.getOne(id, person_id);
     },
 
-    edit: (note, person_id) => {
-        return noteDao.edit(note, person_id);
+    edit: (id, note, person_id) => {
+        return noteDao.edit(id, note, person_id);
     },
 
     delete: (id, person_id) => {

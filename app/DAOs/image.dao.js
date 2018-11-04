@@ -56,13 +56,13 @@ module.exports = {
      * @returns Information from of the person with the provided email address.
      * @throws A new error if email is not registered in the database.
      */
-    edit: (image) => {
+    edit: (id, image) => {
         return db.task(async t => {
             //Check if there's a person with the provided email
-            const count = await t.one('SELECT count(id) FROM image WHERE image.id = $1', [image.id]);
+            const count = await t.one('SELECT count(id) FROM image WHERE image.id = $1', [id]);
             if (count.count > 0) {
                 return t.one(`UPDATE image SET url = $1 WHERE image.id = $2
-                    RETURNING id, url`, [image.url, image.id]);
+                    RETURNING id, url`, [image.url, id]);
             } else {
                 throw {
                     status: 404,

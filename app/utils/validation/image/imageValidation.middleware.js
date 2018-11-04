@@ -12,8 +12,7 @@ const getImage = [
 ];
 
 const editImage = [
-    body('id', 'No id provided').exists()
-        .isNumeric().withMessage('id not a valid number'),
+    param('id', 'No id provided').exists(),
     body('url', 'No url provided').exists().isURL().withMessage('Not valid url provided')
 ];
 

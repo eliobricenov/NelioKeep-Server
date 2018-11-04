@@ -13,8 +13,8 @@ module.exports = {
         return imageDao.getOne(id);
     },
 
-    edit: (note) => {
-        return imageDao.edit(note);
+    edit: (id, note) => {
+        return imageDao.edit(id, note);
     },
 
     delete: (id) => {

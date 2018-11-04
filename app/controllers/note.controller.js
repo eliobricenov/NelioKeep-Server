@@ -49,10 +49,10 @@ router
         }
     })
     
-    .put('/', [jwtUtils.verifyToken, noteValidations.editNote, handleValidationErrors], async (req, res, next) => {
+    .put('/:id', [jwtUtils.verifyToken, noteValidations.editNote, handleValidationErrors], async (req, res, next) => {
         try {
             const session = await jwtUtils.decodeToken(req.token, config.secretKey);
-            const data = await noteService.edit(req.body, session.data.id);
+            const data = await noteService.edit(req.params.id, req.body, session.data.id);
             res.status(200).send({
                 status: 200,
                 data

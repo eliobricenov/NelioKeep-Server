@@ -11,8 +11,6 @@ const getNote = [
 ];
 
 const editNote = [
-    body('id', 'No id provided').exists()
-        .isNumeric().withMessage('id not a valid number'),
     body('title', 'No title provided').exists(),
     body('content', 'No content provided').exists()
 ];

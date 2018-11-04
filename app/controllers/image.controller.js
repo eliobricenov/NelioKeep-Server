@@ -35,10 +35,10 @@ router
         }
     })
 
-    .put('/', [jwtUtils.verifyToken, imageValidations.editImage, 
+    .put('/:id', [jwtUtils.verifyToken, imageValidations.editImage, 
         handleValidationErrors], async (req, res, next) => {
         try {
-            const data = await imageService.edit(req.body);
+            const data = await imageService.edit(req.params.id, req.body);
             res.status(200).send({
                 status: 200,
                 data

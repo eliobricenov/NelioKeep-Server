@@ -67,15 +67,15 @@ module.exports = {
      * @returns Information from of the person with the provided email address.
      * @throws A new error if email is not registered in the database.
      */
-    edit: (note, person_id) => {
-        console.log(note, person_id);
+    edit: (id, note, person_id) => {
+        console.log(id, note, person_id);
         return db.task(async t => {
             //Check if there's a person with the provided email
             const count = await t.one(`SELECT count(id) FROM note WHERE note.id = $1 
-                AND note.person_id = $2`, [note.id, person_id]);
+                AND note.person_id = $2`, [id, person_id]);
             if (count.count > 0) {
                 return t.one(`UPDATE note SET title = $1, content = $2 WHERE note.id = $3
-                    RETURNING id, title, content, person_id`, [note.title, note.content, note.id]);
+                    RETURNING id, title, content, person_id`, [note.title, note.content, id]);
             } else {
                 throw {
                     status: 404,
